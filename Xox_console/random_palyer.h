@@ -12,6 +12,7 @@ class random_palyer : public base_player
         void do_move(InfiniteFild *zeon);
         const char * get_name();
         void set_type(short type);
+        void refresh();
 };
 
 #endif // RANDOM_PALYER_H

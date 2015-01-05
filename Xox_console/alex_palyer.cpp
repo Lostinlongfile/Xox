@@ -17,6 +17,11 @@ alex_palyer::alex_palyer()
 {
     //ctor
 }
+
+void alex_palyer::refresh()
+{
+    //ctor
+}
 void alex_palyer::do_move(InfiniteFild *zeon){
     vector<point> avalible;
     avalible.clear();

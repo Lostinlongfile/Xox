@@ -17,6 +17,10 @@ random_palyer::random_palyer()
 {
     //ctor
 }
+void random_palyer::refresh()
+{
+    //ctor
+}
 void random_palyer::do_move(InfiniteFild *zeon){
     vector<point> avalible;
     avalible.clear();

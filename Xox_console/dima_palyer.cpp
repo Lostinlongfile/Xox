@@ -17,6 +17,10 @@ dima_palyer::dima_palyer()
 {
     //ctor
 }
+void dima_palyer::refresh()
+{
+    //ctor
+}
 void dima_palyer::do_move(InfiniteFild *zeon){
     vector<point> avalible;
     avalible.clear();
