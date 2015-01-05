@@ -9,7 +9,7 @@ class random_palyer : public base_player
     public:
         int type;
         random_palyer();
-        void do_move(InfiniteFild *zeon);
+        point do_move(InfiniteFild *zeon);
         const char * get_name();
         void set_type(short type);
         void refresh();

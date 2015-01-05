@@ -12,3 +12,20 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::on_pushButton_clicked()
+{
+    //Автоматический тест
+    FT=new force_test();
+    FT->showNormal();
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    //Пошаговая игра
+}
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    //Игра с человеком
+}

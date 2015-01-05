@@ -1,6 +1,12 @@
 #ifndef INFINITEFILD_H
 #define INFINITEFILD_H
 #include <vector>
+class point{
+public:
+    point(int a,int b):x(a),y(b){}
+    int x;
+    int y;
+};
 class InfiniteFild
 {
     int min_x,min_y,max_x,max_y;

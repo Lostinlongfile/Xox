@@ -59,13 +59,13 @@
 	<cstdlib>
 	<iostream>
 
-1420487437 e:\work_and_projects\xox\xox_console\alex_palyer.h
+1420496925 e:\work_and_projects\xox\xox_console\alex_palyer.h
 	"base_player.h"
 
-1420486261 e:\work_and_projects\xox\xox_console\base_player.h
+1420496910 e:\work_and_projects\xox\xox_console\base_player.h
 	"infinitefild.h"
 
-1420411757 e:\work_and_projects\xox\xox_console\infinitefild.h
+1420496823 e:\work_and_projects\xox\xox_console\infinitefild.h
 	<vector>
 
 1420405923 source:e:\work_and_projects\xox\xox_console\base_player.cpp
@@ -77,7 +77,7 @@
 	<cstdlib>
 	<iostream>
 
-1420487475 e:\work_and_projects\xox\xox_console\dima_palyer.h
+1420496920 e:\work_and_projects\xox\xox_console\dima_palyer.h
 	"base_player.h"
 
 1420417953 source:e:\work_and_projects\xox\xox_console\infinitefild.cpp
@@ -103,7 +103,7 @@
 	<cstdlib>
 	<iostream>
 
-1420488182 e:\work_and_projects\xox\xox_console\random_palyer.h
+1420496938 e:\work_and_projects\xox\xox_console\random_palyer.h
 	"base_player.h"
 
 1420487725 e:\work_and_projects\xox\xox_console\test_func.h
@@ -114,6 +114,6 @@
 	"random_palyer.h"
 	<iostream>
 
-1420417188 source:e:\work_and_projects\xox\xox_console\test_func.cpp
+1420487706 source:e:\work_and_projects\xox\xox_console\test_func.cpp
 	"test_func.h"
 

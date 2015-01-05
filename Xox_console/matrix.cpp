@@ -7,10 +7,12 @@ Matrix::Matrix()
 }
 void Matrix::do_step_1()
 {
-    X->do_move(zeon);
+    point t=X->do_move(zeon);
+    zeon->set(t.x,t.y,2);
 }
 
 void Matrix::do_step_2()
 {
-    O->do_move(zeon);
+    point t=O->do_move(zeon);
+    zeon->set(t.x,t.y,1);
 }

@@ -7,7 +7,7 @@ class base_player
 {
     public:
         base_player();
-        virtual void do_move(InfiniteFild *zeon)=0;
+        virtual point do_move(InfiniteFild *zeon)=0;
         virtual const char * get_name()=0;
         virtual void set_type(short type)=0;
         virtual void refresh()=0;

@@ -219,3 +219,6 @@ Makefile
 Makefile.Debug
 Makefile.Release
 ui_mainwindow.h
+object_script.Xox.Debug
+object_script.Xox.Release
+ui_force_test.h
