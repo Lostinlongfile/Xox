@@ -1,0 +1,117 @@
+# depslib dependency file v1.0
+1420413332 source:e:\work_and_projects\xox\infinitefild.cpp
+	"infinitefild.h"
+	<iostream>
+
+1420411757 e:\work_and_projects\xox\infinitefild.h
+	<vector>
+
+1420414494 source:e:\work_and_projects\xox\main.cpp
+	<iostream>
+	"infinitefild.h"
+	"matrix.h"
+	"alex_palyer.h"
+	"dima_palyer.h"
+
+1420405923 source:e:\work_and_projects\xox\base_player.cpp
+	"base_player.h"
+
+1420408033 e:\work_and_projects\xox\base_player.h
+	"infinitefild.h"
+
+1420414555 e:\work_and_projects\xox\matrix.h
+	"infinitefild.h"
+	"base_player.h"
+
+1420410302 e:\work_and_projects\xox\random_palyer.h
+	"base_player.h"
+
+1420410460 source:e:\work_and_projects\xox\matrix.cpp
+	"matrix.h"
+
+1420411610 source:e:\work_and_projects\xox\random_palyer.cpp
+	"random_palyer.h"
+	<vector>
+	<cstdlib>
+	<iostream>
+
+1420414117 source:e:\work_and_projects\xox\alex_palyer.cpp
+	"alex_palyer.h"
+	<vector>
+	<cstdlib>
+	<iostream>
+
+1420414201 e:\work_and_projects\xox\alex_palyer.h
+	"base_player.h"
+
+1420414126 source:e:\work_and_projects\xox\dima_palyer.cpp
+	"dima_palyer.h"
+	<vector>
+	<cstdlib>
+	<iostream>
+
+1420414101 e:\work_and_projects\xox\dima_palyer.h
+	"base_player.h"
+
+1420414117 source:e:\work_and_projects\xox\xox_console\alex_palyer.cpp
+	"alex_palyer.h"
+	<vector>
+	<cstdlib>
+	<iostream>
+
+1420414201 e:\work_and_projects\xox\xox_console\alex_palyer.h
+	"base_player.h"
+
+1420416178 e:\work_and_projects\xox\xox_console\base_player.h
+	"infinitefild.h"
+
+1420411757 e:\work_and_projects\xox\xox_console\infinitefild.h
+	<vector>
+
+1420405923 source:e:\work_and_projects\xox\xox_console\base_player.cpp
+	"base_player.h"
+
+1420414126 source:e:\work_and_projects\xox\xox_console\dima_palyer.cpp
+	"dima_palyer.h"
+	<vector>
+	<cstdlib>
+	<iostream>
+
+1420414101 e:\work_and_projects\xox\xox_console\dima_palyer.h
+	"base_player.h"
+
+1420417953 source:e:\work_and_projects\xox\xox_console\infinitefild.cpp
+	"infinitefild.h"
+	<iostream>
+
+1420416997 source:e:\work_and_projects\xox\xox_console\main.cpp
+	<iostream>
+	"test_func.h"
+
+1420414555 e:\work_and_projects\xox\xox_console\matrix.h
+	"infinitefild.h"
+	"base_player.h"
+
+1420410460 source:e:\work_and_projects\xox\xox_console\matrix.cpp
+	"matrix.h"
+
+1420411610 source:e:\work_and_projects\xox\xox_console\random_palyer.cpp
+	"random_palyer.h"
+	<vector>
+	<cstdlib>
+	<iostream>
+
+1420410302 e:\work_and_projects\xox\xox_console\random_palyer.h
+	"base_player.h"
+
+1420417537 e:\work_and_projects\xox\xox_console\test_func.h
+	"infinitefild.h"
+	"matrix.h"
+	"alex_palyer.h"
+	"dima_palyer.h"
+	"random_palyer.h"
+	<iostream>
+
+1420417188 source:e:\work_and_projects\xox\xox_console\test_func.cpp
+	"test_func.h"
+
