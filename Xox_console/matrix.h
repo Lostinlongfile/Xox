@@ -8,6 +8,7 @@ class Matrix
     public:
         InfiniteFild *zeon;
         Matrix();
+        point pX,pO;
         void set_X(base_player * x){X=x;X->set_type(2);};
         void set_O(base_player * o){O=o;O->set_type(1);};
         base_player *get_X(){return X;}

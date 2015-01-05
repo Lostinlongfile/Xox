@@ -1,18 +1,18 @@
 #include "matrix.h"
 
-Matrix::Matrix()
+Matrix::Matrix():pX(0,0),pO(0,0)
 {
     zeon=new InfiniteFild();
 
 }
 void Matrix::do_step_1()
 {
-    point t=X->do_move(zeon);
-    zeon->set(t.x,t.y,2);
+    pX=X->do_move(zeon);
+    zeon->set(pX.x,pX.y,2);
 }
 
 void Matrix::do_step_2()
 {
-    point t=O->do_move(zeon);
-    zeon->set(t.x,t.y,1);
+    pO=O->do_move(zeon);
+    zeon->set(pO.x,pO.y,1);
 }

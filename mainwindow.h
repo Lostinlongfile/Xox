@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "force_test.h"
+#include "step_fighter.h"
 namespace Ui {
 class MainWindow;
 }
@@ -15,6 +16,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     force_test *FT;
+    Step_fighter *SF;
 private slots:
     void on_pushButton_clicked();
 

@@ -20,7 +20,9 @@ SOURCES += main.cpp\
     Xox_console/dima_palyer.cpp \
     Xox_console/base_player.cpp \
     Xox_console/alex_palyer.cpp \
-    threadfighter.cpp
+    threadfighter.cpp \
+    step_fighter.cpp \
+    graphicfield.cpp
 
 HEADERS  += mainwindow.h \
     force_test.h \
@@ -31,9 +33,12 @@ HEADERS  += mainwindow.h \
     Xox_console/dima_palyer.h \
     Xox_console/base_player.h \
     Xox_console/alex_palyer.h \
-    threadfighter.h
+    threadfighter.h \
+    step_fighter.h \
+    graphicfield.h
 
 FORMS    += mainwindow.ui \
-    force_test.ui
+    force_test.ui \
+    step_fighter.ui
 
 OTHER_FILES +=
