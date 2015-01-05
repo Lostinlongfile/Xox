@@ -213,3 +213,9 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+Xox-build-desktop-Qt_4_8_5__qt-everywhere-opensource-src-4_8_5_________/Makefile
+Xox-build-desktop-Qt_4_8_5__qt-everywhere-opensource-src-4_8_5_________/Makefile.Debug
+Makefile
+Makefile.Debug
+Makefile.Release
+ui_mainwindow.h
