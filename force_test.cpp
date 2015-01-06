@@ -8,10 +8,13 @@ force_test::force_test(QWidget *parent) :
     candidats.push_back(new alex_palyer());
     candidats.push_back(new dima_palyer());
     candidats.push_back(new random_palyer());
+    candidats_1.push_back(new alex_palyer());
+    candidats_1.push_back(new dima_palyer());
+    candidats_1.push_back(new random_palyer());
     tf=new ThreadFighter();
     for(int i=0;i<candidats.size();i++){
         ui->comboBox->addItem(QString(candidats[i]->get_name()));
-        ui->comboBox_2->addItem(QString(candidats[i]->get_name()));
+        ui->comboBox_2->addItem(QString(candidats_1[i]->get_name()));
     }
     connect(tf,SIGNAL(P1_win()),this,SLOT(P1_win()));
     connect(tf,SIGNAL(P2_win()),this,SLOT(P2_win()));
@@ -29,7 +32,7 @@ void force_test::on_pushButton_clicked()
     all=ui->lineEdit->text().toInt();
     ui->progressBar->setMaximum(2*all);
     ui->progressBar->setValue(0);
-    tf->init(candidats[ui->comboBox->currentIndex()],candidats[ui->comboBox->currentIndex()],all);
+    tf->init(candidats[ui->comboBox->currentIndex()],candidats_1[ui->comboBox_2->currentIndex()],all);
     tf->start();
 }
 void force_test::P1_win()

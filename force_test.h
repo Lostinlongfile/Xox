@@ -21,6 +21,7 @@ public:
     explicit force_test(QWidget *parent = 0);
     ~force_test();
     std::vector<base_player*> candidats;
+    std::vector<base_player*> candidats_1;
     ThreadFighter *tf;
     int p1_w,p2_w,all;
 private slots:

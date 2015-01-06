@@ -2,7 +2,12 @@
 #define STEP_FIGHTER_H
 
 #include <QMainWindow>
-
+#include "Xox_console/base_player.h"
+#include "Xox_console/alex_palyer.h"
+#include "Xox_console/random_palyer.h"
+#include "Xox_console/dima_palyer.h"
+#include "Xox_console/matrix.h"
+#include "graphicfield.h"
 namespace Ui {
 class Step_fighter;
 }
@@ -14,9 +19,15 @@ class Step_fighter : public QMainWindow
 public:
     explicit Step_fighter(QWidget *parent = 0);
     ~Step_fighter();
-    
+    Matrix *ma;
+    int st;
+    std::vector<base_player*> candidats;
+    std::vector<base_player*> candidats_1;
+    GraphicField *fild;
 private slots:
     void on_pushButton_2_clicked();
+
+    void on_pushButton_clicked();
 
 private:
     Ui::Step_fighter *ui;
