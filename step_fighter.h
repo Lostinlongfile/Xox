@@ -29,8 +29,6 @@ private slots:
 
     void on_pushButton_clicked();
 
-    void on_gm_lbl_linkActivated(const QString &link);
-
 private:
     Ui::Step_fighter *ui;
 };

@@ -19,7 +19,9 @@
 #include <QtGui/QHeaderView>
 #include <QtGui/QLabel>
 #include <QtGui/QMainWindow>
+#include <QtGui/QMenuBar>
 #include <QtGui/QPushButton>
+#include <QtGui/QStatusBar>
 #include <QtGui/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -36,7 +38,8 @@ public:
     QLabel *label_2;
     QGraphicsView *graphicsView;
     QPushButton *pushButton_2;
-    QLabel *label;
+    QMenuBar *menubar;
+    QStatusBar *statusbar;
 
     void setupUi(QMainWindow *Step_fighter)
     {
@@ -83,26 +86,22 @@ public:
 
         graphicsView = new QGraphicsView(centralwidget);
         graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
-        graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-        graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 
-        gridLayout->addWidget(graphicsView, 5, 0, 1, 2);
+        gridLayout->addWidget(graphicsView, 4, 0, 1, 2);
 
         pushButton_2 = new QPushButton(centralwidget);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
 
         gridLayout->addWidget(pushButton_2, 3, 1, 1, 1);
 
-        label = new QLabel(centralwidget);
-        label->setObjectName(QString::fromUtf8("label"));
-        QFont font;
-        font.setPointSize(11);
-        label->setFont(font);
-        label->setAlignment(Qt::AlignCenter);
-
-        gridLayout->addWidget(label, 4, 0, 1, 2);
-
         Step_fighter->setCentralWidget(centralwidget);
+        menubar = new QMenuBar(Step_fighter);
+        menubar->setObjectName(QString::fromUtf8("menubar"));
+        menubar->setGeometry(QRect(0, 0, 800, 20));
+        Step_fighter->setMenuBar(menubar);
+        statusbar = new QStatusBar(Step_fighter);
+        statusbar->setObjectName(QString::fromUtf8("statusbar"));
+        Step_fighter->setStatusBar(statusbar);
 
         retranslateUi(Step_fighter);
 
@@ -116,7 +115,6 @@ public:
         labe->setText(QApplication::translate("Step_fighter", "\320\230\320\263\321\200\320\276\320\2721 (X)", 0, QApplication::UnicodeUTF8));
         label_2->setText(QApplication::translate("Step_fighter", "\320\230\320\263\321\200\320\276\320\272 2 (O)", 0, QApplication::UnicodeUTF8));
         pushButton_2->setText(QApplication::translate("Step_fighter", "\320\241\320\273\320\265\320\264\321\203\321\216\321\211\320\270\320\271 \321\205\320\276\320\264", 0, QApplication::UnicodeUTF8));
-        label->setText(QString());
     } // retranslateUi
 
 };
