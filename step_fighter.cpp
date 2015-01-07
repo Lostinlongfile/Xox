@@ -39,11 +39,13 @@ void Step_fighter::on_pushButton_2_clicked()
         {
             ma->do_step_2();
         }
-
-        fild->refresh_fild(ma->zeon);
-        QList<QRectF> st;
-        st.append((fild->sceneRect()));
-        ui->graphicsView->updateScene(st);
+        ui->graphicsView->updateGeometry();
+        ui->graphicsView->update();
+        QList<QRectF> list;
+        list.append(fild->wnd->boundingRect());
+        //ui->graphicsView->set
+        ui->graphicsView->viewport()->repaint();
+        qApp->processEvents();
     }
 }
 
@@ -53,4 +55,6 @@ void Step_fighter::on_pushButton_clicked()
     ma->set_X(candidats[ui->comboBox->currentIndex()]);
     ma->set_O(candidats_1[ui->comboBox_2->currentIndex()]);
     st=0;
+    fild->set_Matrix(ma);
+
 }

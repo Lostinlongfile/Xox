@@ -78,7 +78,7 @@ void GraphicField::set(int x, int y, int type){
 }
 
 void GraphicField::refresh_fild(InfiniteFild *zeon){
-    while(may<zeon->get_may())
+  /*  while(may<zeon->get_may())
         add_bottom_row();
     while(max<zeon->get_max())
         add_right_colmn();
@@ -86,11 +86,21 @@ void GraphicField::refresh_fild(InfiniteFild *zeon){
         add_top_row();
     while(mix>zeon->get_mix())
         add_left_colmn();
-    this->setSceneRect(zeon->get_mix()*25,zeon->get_miy()*25,(zeon->get_max()-zeon->get_mix())*25,(zeon->get_may()-zeon->get_miy())*25);
     for(int i=zeon->get_miy();i<=zeon->get_may();i++){
         for(int j=zeon->get_mix();j<=zeon->get_max();j++)
         {
             this->set(j,i,zeon->get(j,i));
         }
-    }
+    }*/
+    this->setSceneRect(zeon->get_mix()*25,zeon->get_miy()*25,(zeon->get_max()-zeon->get_mix())*25,(zeon->get_may()-zeon->get_miy())*25);
+
+    this->update(wnd->boundingRect());
+
+}
+void GraphicField::set_Matrix(Matrix *world)
+{
+    this->clear();
+    this->wnd=new WindoToMatrix();
+    this->wnd->world=world;
+    this->addItem(wnd);
 }
