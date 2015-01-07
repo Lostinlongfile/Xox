@@ -92,9 +92,7 @@ void GraphicField::refresh_fild(InfiniteFild *zeon){
             this->set(j,i,zeon->get(j,i));
         }
     }*/
-    this->setSceneRect(zeon->get_mix()*25,zeon->get_miy()*25,(zeon->get_max()-zeon->get_mix())*25,(zeon->get_may()-zeon->get_miy())*25);
-
-    this->update(wnd->boundingRect());
+    this->setSceneRect(wnd->boundingRect());
 
 }
 void GraphicField::set_Matrix(Matrix *world)
