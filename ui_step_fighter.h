@@ -113,8 +113,8 @@ public:
     {
         Step_fighter->setWindowTitle(QApplication::translate("Step_fighter", "MainWindow", 0, QApplication::UnicodeUTF8));
         pushButton->setText(QApplication::translate("Step_fighter", "\320\235\320\260\321\207\320\260\321\202\321\214 \321\202\320\265\321\201\321\202", 0, QApplication::UnicodeUTF8));
-        labe->setText(QApplication::translate("Step_fighter", "\320\230\320\263\321\200\320\276\320\2721", 0, QApplication::UnicodeUTF8));
-        label_2->setText(QApplication::translate("Step_fighter", "\320\230\320\263\321\200\320\276\320\272 2", 0, QApplication::UnicodeUTF8));
+        labe->setText(QApplication::translate("Step_fighter", "\320\230\320\263\321\200\320\276\320\2721 (X)", 0, QApplication::UnicodeUTF8));
+        label_2->setText(QApplication::translate("Step_fighter", "\320\230\320\263\321\200\320\276\320\272 2 (O)", 0, QApplication::UnicodeUTF8));
         pushButton_2->setText(QApplication::translate("Step_fighter", "\320\241\320\273\320\265\320\264\321\203\321\216\321\211\320\270\320\271 \321\205\320\276\320\264", 0, QApplication::UnicodeUTF8));
         label->setText(QString());
     } // retranslateUi

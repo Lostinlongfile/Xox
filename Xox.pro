@@ -22,7 +22,8 @@ SOURCES += main.cpp\
     Xox_console/alex_palyer.cpp \
     threadfighter.cpp \
     step_fighter.cpp \
-    graphicfield.cpp
+    graphicfield.cpp \
+    usergame.cpp
 
 HEADERS  += mainwindow.h \
     force_test.h \
@@ -35,10 +36,12 @@ HEADERS  += mainwindow.h \
     Xox_console/alex_palyer.h \
     threadfighter.h \
     step_fighter.h \
-    graphicfield.h
+    graphicfield.h \
+    usergame.h
 
 FORMS    += mainwindow.ui \
     force_test.ui \
-    step_fighter.ui
+    step_fighter.ui \
+    usergame.ui
 
 OTHER_FILES +=

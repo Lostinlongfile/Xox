@@ -19,7 +19,7 @@ Step_fighter::Step_fighter(QWidget *parent) :
     }
     ma=NULL;
 
-    fild=new GraphicField();
+    fild=new GraphicField(false);
     ui->graphicsView->setScene(fild);
 }
 

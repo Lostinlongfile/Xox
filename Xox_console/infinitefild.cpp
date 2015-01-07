@@ -14,6 +14,14 @@ InfiniteFild::InfiniteFild():
     fild.push_back(temp);
     fild.push_back(temp);
     fild.push_back(temp);
+
+    //сгенерим поле  10x10
+    for(int i=0;i<7;i++){
+        add_right_colmn();
+        add_bottom_row();
+        add_top_row();
+        add_left_colmn();
+    }
     //ctor
 }
 short InfiniteFild::get(int x,int y)

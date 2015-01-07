@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "force_test.h"
 #include "step_fighter.h"
+#include "usergame.h"
 namespace Ui {
 class MainWindow;
 }
@@ -17,6 +18,7 @@ public:
     ~MainWindow();
     force_test *FT;
     Step_fighter *SF;
+    UserGame *UG;
 private slots:
     void on_pushButton_clicked();
 

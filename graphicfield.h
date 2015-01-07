@@ -7,6 +7,7 @@
 #include <QStyleOptionGraphicsItem>
 #include <QWidget>
 #include <vector>
+#include <QMouseEvent>
 #include "Xox_console/infinitefild.h"
 #include "Xox_console/matrix.h"
 class WindoToMatrix:public QGraphicsItem
@@ -54,46 +55,17 @@ public:
      }
 };
 
-class Cell:public QGraphicsItem
-{
-public:
-    int x;
-    int y;
-    int type;
-    bool hi;
-    int size;
-    Cell(int _x,int _y,int _type,bool _hi):
-        x(_x),y(_y),type(_type),hi(_hi),size(25)
-    {
-
-    }
-    QRectF boundingRect() const
-    {
-             return QRectF(0,0,25, 25);
-    }
-
-     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
-                    QWidget *widget)
-     {
-
-    }
-
-};
 
 class GraphicField : public QGraphicsScene
 {
 public:
-    int mix,miy,max,may;
-    std::vector<std::vector<Cell*> > fild;
-    GraphicField();
-    void add_right_colmn();
-    void add_bottom_row();
-    void add_top_row();
-    void add_left_colmn();
-    void set(int x,int y,int type);
+    bool first;
+    bool inter_act,pl_is_X;
+    GraphicField(bool inter);
     void refresh_fild(InfiniteFild *inf);
     WindoToMatrix *wnd;
     void set_Matrix(Matrix *world);
+    void mousePress(QPointF  e);
 };
 
 #endif // GRAPHICFIELD_H

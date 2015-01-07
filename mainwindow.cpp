@@ -29,4 +29,6 @@ void MainWindow::on_pushButton_2_clicked()
 void MainWindow::on_pushButton_3_clicked()
 {
     //Игра с человеком
+    UG=new UserGame();
+    UG->show();
 }
