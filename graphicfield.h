@@ -24,10 +24,7 @@ public:
     QRectF boundingRect() const
     {
 
-        if(world==NULL)
-             return QRectF(0,0,25, 25);
-        else
-            return QRectF(world->zeon->get_mix()*size,world->zeon->get_miy()*size,(world->zeon->get_mix()-world->zeon->get_max())*25, (world->zeon->get_miy()-world->zeon->get_may())*25);
+        return QRectF(world->zeon->get_mix()*size,world->zeon->get_miy()*size,(world->zeon->get_max()-world->zeon->get_mix())*25, (world->zeon->get_may()-world->zeon->get_miy())*25);
 
     }
 
