@@ -29,7 +29,7 @@ void GraphicField::mousePress(QPointF  e)
 
             if(pl_is_X)
             {
-                if(wnd->world->zeon->isAnyNear(x,y)){
+                if(wnd->world->zeon->isAnyNear(x,y)&&(wnd->world->zeon->get(x,y)==0)){
                     wnd->world->zeon->set(x,y,2);
                     if(wnd->world->win()){
                         QMessageBox *t=new QMessageBox();
@@ -49,7 +49,7 @@ void GraphicField::mousePress(QPointF  e)
             else
             {
 
-                if(wnd->world->zeon->isAnyNear(x,y)){
+                if(wnd->world->zeon->isAnyNear(x,y)&&(wnd->world->zeon->get(x,y)==0)){
                     wnd->world->zeon->set(x,y,1);
                     if(wnd->world->win()){
                         QMessageBox *t=new QMessageBox();

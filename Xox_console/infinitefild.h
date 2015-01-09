@@ -1,11 +1,16 @@
 #ifndef INFINITEFILD_H
 #define INFINITEFILD_H
 #include <vector>
+#include <iostream>
 class point{
 public:
     point(int a,int b):x(a),y(b){}
     int x;
     int y;
+    void show()
+    {
+        std::cout<<"("<<x<<";"<<y<<") ";
+    }
 };
 class InfiniteFild
 {
