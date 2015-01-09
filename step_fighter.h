@@ -31,6 +31,8 @@ private slots:
 
     void on_gm_lbl_linkActivated(const QString &link);
 
+    void on_pushButton_3_clicked();
+
 private:
     Ui::Step_fighter *ui;
 };

@@ -54,6 +54,19 @@
       </property>
      </widget>
     </item>
+    <item row="3" column="0">
+     <widget class="QPushButton" name="pushButton_4">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>Проиграть записанную партию</string>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
  </widget>

@@ -36,7 +36,7 @@ line  alex_palyer::get_masive(InfiniteFild *zeon,int x,int y,int dx,int dy)
 }
 point alex_palyer::do_move(InfiniteFild *zeon){
     vector<point> avalible;
-    vector<point> cat_win,thris_ud;
+    vector<point> cat_win,thris_ud,four_hc;
     vector<point> me_win,me_thris_ud;
 
     avalible.clear();
@@ -86,10 +86,10 @@ point alex_palyer::do_move(InfiniteFild *zeon){
                     cat_win.push_back(avalible[i]);\
                     continue;\
                 }\
-                if(!fa.closed_after)/*полузакрытая четвёрка*/\
+                if(!fa.closed_after||!fa.closed_before){/*полузакрытая четвёрка*/\
                     four_half_closed++;\
-                if(!fa.closed_before)/*полузакрытая четвёрка*/\
-                    four_half_closed++;\
+                    four_hc.push_back(avalible[i]);\
+                }\
             }\
             if(fa_me.after+fa_me.before==3)\
             {\
@@ -209,17 +209,24 @@ point alex_palyer::do_move(InfiniteFild *zeon){
         }
         else
         {
-            if(me_thris_ud.size()!=0)//
+            if(four_hc.size()!=0)
             {
-                int n=rand()%me_thris_ud.size();
-                return me_thris_ud[n];
+                int n=rand()%four_hc.size();
+                return four_hc[n];
             }
-            else
-            {
-                if(thris_ud.size()!=0)//
+            else{
+                if(me_thris_ud.size()!=0)//
                 {
-                    int n=rand()%thris_ud.size();
-                    return thris_ud[n];
+                    int n=rand()%me_thris_ud.size();
+                    return me_thris_ud[n];
+                }
+                else
+                {
+                    if(thris_ud.size()!=0)//
+                    {
+                        int n=rand()%thris_ud.size();
+                        return thris_ud[n];
+                    }
                 }
             }
         }

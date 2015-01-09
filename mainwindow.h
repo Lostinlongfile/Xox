@@ -5,6 +5,7 @@
 #include "force_test.h"
 #include "step_fighter.h"
 #include "usergame.h"
+#include "vidoplayer.h"
 namespace Ui {
 class MainWindow;
 }
@@ -18,6 +19,7 @@ public:
     ~MainWindow();
     force_test *FT;
     Step_fighter *SF;
+    vidoplayer *VP;
     UserGame *UG;
 private slots:
     void on_pushButton_clicked();
@@ -25,6 +27,8 @@ private slots:
     void on_pushButton_2_clicked();
 
     void on_pushButton_3_clicked();
+
+    void on_pushButton_4_clicked();
 
 private:
     Ui::MainWindow *ui;

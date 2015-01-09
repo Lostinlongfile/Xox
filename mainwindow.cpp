@@ -32,3 +32,10 @@ void MainWindow::on_pushButton_3_clicked()
     UG=new UserGame();
     UG->show();
 }
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    //Воспроизведение
+    VP=new vidoplayer();
+    VP->show();
+}

@@ -2,6 +2,10 @@
 #include "ui_step_fighter.h"
 #include "graphicfield.h"
 #include <QMessageBox>
+#include <QFileDialog>
+
+#include <QFile>
+
 Step_fighter::Step_fighter(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::Step_fighter)
@@ -82,5 +86,14 @@ void Step_fighter::on_pushButton_clicked()
 
 void Step_fighter::on_gm_lbl_linkActivated(const QString &link)
 {
+
+}
+
+void Step_fighter::on_pushButton_3_clicked()
+{
+    QString qs=QFileDialog::getSaveFileName(this,"Выбирите");
+    fild->wnd->world->out->close();
+    QFile::copy("play.txt",qs);
+    fild->wnd->world->out->open("play.txt");
 
 }

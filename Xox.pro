@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     threadfighter.cpp \
     step_fighter.cpp \
     graphicfield.cpp \
-    usergame.cpp
+    usergame.cpp \
+    vidoplayer.cpp
 
 HEADERS  += mainwindow.h \
     force_test.h \
@@ -37,11 +38,13 @@ HEADERS  += mainwindow.h \
     threadfighter.h \
     step_fighter.h \
     graphicfield.h \
-    usergame.h
+    usergame.h \
+    vidoplayer.h
 
 FORMS    += mainwindow.ui \
     force_test.ui \
     step_fighter.ui \
-    usergame.ui
+    usergame.ui \
+    vidoplayer.ui
 
 OTHER_FILES +=
