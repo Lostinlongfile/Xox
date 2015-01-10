@@ -39,3 +39,10 @@ void MainWindow::on_pushButton_4_clicked()
     VP=new vidoplayer();
     VP->show();
 }
+
+void MainWindow::on_pushButton_5_clicked()
+{
+    //Поле для раздумья
+    TH=new Thinking();
+    TH->show();
+}

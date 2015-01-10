@@ -3,7 +3,7 @@
 #include <QGraphicsView>
 #include <QMessageBox>
 using namespace std;
-GraphicField::GraphicField(bool inter):inter_act(inter)
+GraphicField::GraphicField(bool inter):inter_act(inter),free_fild(false)
 {
 }
 
@@ -14,7 +14,7 @@ void GraphicField::refresh_fild(InfiniteFild *zeon){
 
 }
 
-void GraphicField::mousePress(QPointF  e)
+void GraphicField::mousePress(QPointF  e,bool left)
 {
     QPointF pt = e;//mapToScene(e->pos());
     int x=int(pt.x())-wnd->world->zeon->get_mix()*wnd->size;
@@ -24,8 +24,9 @@ void GraphicField::mousePress(QPointF  e)
     y=(y-y%wnd->size)/wnd->size;
     y=y+wnd->world->zeon->get_miy();
     //std::cout<<x<<" "<<y<<" "<<e.x()<<" "<<e.y()<<" "<<int(e.x())%25<<endl;
-    if(inter_act)
-    {
+    if(!free_fild){
+        if(inter_act)
+        {
 
             if(pl_is_X)
             {
@@ -69,6 +70,27 @@ void GraphicField::mousePress(QPointF  e)
         this->setSceneRect(wnd->boundingRect());
         this->views().at(0)->viewport()->repaint();
         //qApp->processEvents();
+    }
+
+    }
+    else
+    {
+        if(wnd->world->zeon->isExist(x,y)){
+            if((wnd->world->zeon->get(x,y)==0)){
+                if(!left)
+                {
+                    wnd->world->zeon->set(x,y,1);
+                }
+                else
+                {
+                    wnd->world->zeon->set(x,y,2);
+                }
+            }
+            else
+            {
+                wnd->world->zeon->set(x,y,0);
+            }
+        }
     }
 }
 

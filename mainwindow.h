@@ -6,6 +6,7 @@
 #include "step_fighter.h"
 #include "usergame.h"
 #include "vidoplayer.h"
+#include "thinking.h"
 namespace Ui {
 class MainWindow;
 }
@@ -21,6 +22,7 @@ public:
     Step_fighter *SF;
     vidoplayer *VP;
     UserGame *UG;
+    Thinking *TH;
 private slots:
     void on_pushButton_clicked();
 
@@ -29,6 +31,8 @@ private slots:
     void on_pushButton_3_clicked();
 
     void on_pushButton_4_clicked();
+
+    void on_pushButton_5_clicked();
 
 private:
     Ui::MainWindow *ui;

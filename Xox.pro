@@ -24,7 +24,8 @@ SOURCES += main.cpp\
     step_fighter.cpp \
     graphicfield.cpp \
     usergame.cpp \
-    vidoplayer.cpp
+    vidoplayer.cpp \
+    thinking.cpp
 
 HEADERS  += mainwindow.h \
     force_test.h \
@@ -39,12 +40,14 @@ HEADERS  += mainwindow.h \
     step_fighter.h \
     graphicfield.h \
     usergame.h \
-    vidoplayer.h
+    vidoplayer.h \
+    thinking.h
 
 FORMS    += mainwindow.ui \
     force_test.ui \
     step_fighter.ui \
     usergame.ui \
-    vidoplayer.ui
+    vidoplayer.ui \
+    thinking.ui
 
 OTHER_FILES +=

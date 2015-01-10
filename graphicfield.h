@@ -62,17 +62,16 @@ public:
      }
 };
 
-
 class GraphicField : public QGraphicsScene
 {
 public:
     bool first;
-    bool inter_act,pl_is_X;
+    bool inter_act,pl_is_X,free_fild;
     GraphicField(bool inter);
     void refresh_fild(InfiniteFild *inf);
     WindoToMatrix *wnd;
     void set_Matrix(Matrix *world);
-    void mousePress(QPointF  e);
+    void mousePress(QPointF  e,bool left=true);
 };
 
 #endif // GRAPHICFIELD_H
