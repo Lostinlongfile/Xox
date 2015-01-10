@@ -31,6 +31,13 @@ public:
      void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                     QWidget *widget)
      {
+         {
+             painter->setPen(QPen(Qt::red));
+            int x=0;
+            int y=0;
+            painter->drawRect(x*size+3,y*size+3,size-6, size-6);
+            painter->setPen(QPen(Qt::black));
+         }
          if(world!=NULL)
          {
 

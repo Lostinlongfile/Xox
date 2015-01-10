@@ -19,6 +19,7 @@ public:
     int step;
     explicit vidoplayer(QWidget *parent = 0);
 
+    std::vector<base_player*> candidats;
     GraphicField *fild;
     std::vector<point> move;
     void play(const char *fn);
@@ -31,6 +32,8 @@ private slots:
     void on_pushButton_clicked();
 
     void on_pushButton_2_clicked();
+
+    void on_pushButton_4_clicked();
 
 private:
     Ui::vidoplayer *ui;

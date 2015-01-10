@@ -74,6 +74,7 @@ class alex_palyer : public base_player
 {
     public:
         line get_masive(InfiniteFild *zeon,int x,int y,int dx,int dy);
+        int get_size_if(InfiniteFild *zeon);
         int type;
         alex_palyer();
         point do_move(InfiniteFild *zeon);
