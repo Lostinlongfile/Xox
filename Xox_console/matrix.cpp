@@ -20,3 +20,7 @@ void Matrix::do_step_2()
     zeon->set(pO.x,pO.y,1);
     *out<<"O: "<<pO.x<<" "<<pO.y<<std::endl;
 }
+void Matrix::clear()
+{
+    zeon->clear();
+}

@@ -25,10 +25,13 @@ public:
     ThreadFighter *tf;
     int p1_w,p2_w,all;
 private slots:
+    void finded();
     void on_pushButton_clicked();
     void P1_win();
     void P2_win();
     void upd();
+    void on_pushButton_2_clicked();
+
 private:
     Ui::force_test *ui;
 };

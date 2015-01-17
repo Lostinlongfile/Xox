@@ -126,8 +126,8 @@ void point_info::count(point p,int a, int b,short type,InfiniteFild *zeon,point 
     {
         if((!fa_me.closed_after)&&(!fa_me.closed_before))/*незакрытая четыёрка*/
         {
-            cout<<"ud me: "<<p<<" "<<a<<" "<<b;
-            l.show();
+            //cout<<"ud me: "<<p<<" "<<a<<" "<<b;
+            //l.show();
             me_four_unclosed_dual++;
         }
         else{
@@ -273,12 +273,12 @@ point alex_palyer::do_move(InfiniteFild *zeon,std::stringstream &out){
     out<<"Me wins\n";
     for(int i=0;i<me_win.size();i++)
         out<<me_win[i];
-    cout<<endl;
-    cout<<"Me thris ud\n";
+    out<<endl;
+    out<<"Me 3 ud\n";
     for(int i=0;i<me_thris_ud.size();i++)
         out<<me_thris_ud[i];
     out<<endl;
-    out<<"thris ud\n";
+    out<<"3 ud\n";
     for(int i=0;i<thris_ud.size();i++)
         out<<thris_ud[i];
     out<<endl;
@@ -347,15 +347,30 @@ point alex_palyer::do_move(InfiniteFild *zeon,std::stringstream &out){
                     if(int(pi.cat_thris_unclosed_dual/2)==1)
                         candidats2.push_back(avalible[i]);
                 }
-                if(candidats.size()!=0)
+                if(type==1){
+                    if(candidats2.size()!=0)
+                    {
+                        int n=rand()%candidats2.size();
+                        return candidats2[n];
+                    }
+                    if(candidats.size()!=0)
+                    {
+                        int n=rand()%candidats.size();
+                        return candidats[n];
+                    }
+                }else
                 {
-                    int n=rand()%candidats.size();
-                    return candidats[n];
-                }
-                if(candidats2.size()!=0)
-                {
-                    int n=rand()%candidats2.size();
-                    return candidats2[n];
+
+                    if(candidats.size()!=0)
+                    {
+                        int n=rand()%candidats.size();
+                        return candidats[n];
+                    }
+                    if(candidats2.size()!=0)
+                    {
+                        int n=rand()%candidats2.size();
+                        return candidats2[n];
+                    }
                 }
 
             }
@@ -366,7 +381,7 @@ point alex_palyer::do_move(InfiniteFild *zeon,std::stringstream &out){
     return avalible[n];
 }
 const char * alex_palyer::get_name(){
-    return "Alex's Player v0.3.1";
+    return "Alex's Player v0.3.2";
 }
 void alex_palyer::set_type(short type){
     this->type=type;

@@ -20,6 +20,7 @@ class Matrix
         void do_step_2();
         bool win(){return (zeon->isTypeWin(2)||zeon->isTypeWin(1));}
         ~Matrix(){out->close();};
+        void clear();
 };
 
 #endif // MATRIX_H

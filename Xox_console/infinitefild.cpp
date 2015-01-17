@@ -200,3 +200,18 @@ bool InfiniteFild::isAnyNear(int x,int y)
         return true;
     return false;
 }
+
+void InfiniteFild::clear()
+{
+
+    for(int i=min_y;i<=max_y;i++){
+        for(int j=min_x;j<=max_x;j++){
+
+            int rx=j-min_x;
+            int ry=i-min_y;
+            fild[ry][rx]=0;
+        }
+        cout<<endl;
+    }
+    //dtor
+}

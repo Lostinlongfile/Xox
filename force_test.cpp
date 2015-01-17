@@ -1,5 +1,6 @@
 #include "force_test.h"
 #include "ui_force_test.h"
+#include <QFileDialog>
 force_test::force_test(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::force_test)
@@ -18,6 +19,7 @@ force_test::force_test(QWidget *parent) :
     }
     connect(tf,SIGNAL(P1_win()),this,SLOT(P1_win()));
     connect(tf,SIGNAL(P2_win()),this,SLOT(P2_win()));
+    connect(tf,SIGNAL(finded()),this,SLOT(finded()));
 }
 
 force_test::~force_test()
@@ -45,11 +47,37 @@ void force_test::P2_win()
     p2_w++;
     upd();
 }
+void force_test::finded()
+{
+    p1_w=0;
+    p2_w=0;
+    all=ui->lineEdit->text().toInt();
+    ui->progressBar->setMaximum(2*all);
+    ui->progressBar->setValue(0);
 
+    QString qs=QFileDialog::getSaveFileName(this,QString::fromUtf8("Сохранить самую короткую партию"));
+    tf->world.out->close();
+    QFile::copy("play.txt",qs);
+    tf->world.out->open("play.txt");
+}
 void force_test::upd()
 {
     ui->progressBar->setValue(p1_w+p2_w);
     ui->p1_num->setText(QString::number(p1_w));
     ui->p2_num->setText(QString::number(p2_w));
+    QString m="";
+    m=m.sprintf("(%i/%i)",tf->cminim,tf->lminim);
+    ui->label_7->setText(m);
 
+}
+
+void force_test::on_pushButton_2_clicked()
+{
+    p1_w=0;
+    p2_w=0;
+    all=ui->lineEdit->text().toInt();
+    ui->progressBar->setMaximum(2*all);
+    ui->progressBar->setValue(0);
+    tf->init(candidats[ui->comboBox->currentIndex()],candidats_1[ui->comboBox_2->currentIndex()],all,ui->spinBox->value());
+    tf->start();
 }

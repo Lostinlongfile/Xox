@@ -41,6 +41,7 @@ class InfiniteFild
         bool isAll(int x,int y,short type);
         bool isTypeWin(short type);
         bool isAnyNear(int x,int y);
+        void clear();
 };
 
 #endif // INFINITEFILD_H
