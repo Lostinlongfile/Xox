@@ -23,4 +23,7 @@ void Matrix::do_step_2()
 void Matrix::clear()
 {
     zeon->clear();
+    out->close();
+    delete out;
+    out=new std::ofstream("play.txt");
 }
