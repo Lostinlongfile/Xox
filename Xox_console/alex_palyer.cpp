@@ -79,13 +79,13 @@ void point_info::count(point p,int a, int b,short type,InfiniteFild *zeon,point 
         return;
     full_analize fa=l.analize_for(3-type);
     full_analize fa_me=l.analize_for(type);
-    if(fa_me.after+fa_me.before==4)
+  /*  if(fa_me.after+fa_me.before==4)
         wins_me++;
 
     if(fa.after+fa.before==4)
         cat_win++;
-
-    if(fa.after+fa.before==3)
+*/
+    if(fa.after+fa.before==4)
     {
         if((!fa.closed_after)&&(!fa.closed_before))/*незакрытая четыёрка*/
             cat_four_unclosed_dual++;
@@ -93,13 +93,13 @@ void point_info::count(point p,int a, int b,short type,InfiniteFild *zeon,point 
         if(!fa.closed_after||!fa.closed_before)/*полузакрытая четвёрка*/
             cat_four_unclosed_partly++;
     }
-    if(fa.after+fa.before==2)
+    if(fa.after+fa.before==3)
     {
         if((!fa.closed_after)&&(!fa.closed_before))
             cat_thris_unclosed_dual++;/*незакрытая тройка*/
     }
 
-    if(fa_me.after+fa_me.before==3)
+    if(fa_me.after+fa_me.before==4)
     {
         if((!fa_me.closed_after)&&(!fa_me.closed_before))/*незакрытая четыёрка*/
             me_four_unclosed_dual++;
@@ -107,7 +107,7 @@ void point_info::count(point p,int a, int b,short type,InfiniteFild *zeon,point 
         if(!fa_me.closed_after||!fa_me.closed_before)/*полузакрытая четвёрка*/
             me_four_unclosed_partly++;
     }
-    if(fa_me.after+fa_me.before==2)
+    if(fa_me.after+fa_me.before==3)
     {
         if((!fa_me.closed_after)&&(!fa_me.closed_before))
             me_thris_unclosed_dual++;/*незакрытая тройка*/
@@ -282,13 +282,13 @@ point alex_palyer::do_move(InfiniteFild *zeon,std::stringstream &out){
 
                     zeon->set(avalible[i].x,avalible[i].y,0);
 
-                    if((pi.me_four_unclosed_partly>0)&&(pi.me_thris_unclosed_dual>0)){
+                    if((pi.me_four_unclosed_partly>0)&&(int(pi.me_thris_unclosed_dual/2)>0)){
                         out<<"После постановки сюда "<<avalible[i]<<" я получаю  полузакрытую четвёрку и не закрытую тройку\n";
                         return avalible[i];}
-                    if(pi.me_thris_unclosed_dual>1){
+                    if(int(pi.me_thris_unclosed_dual/2)>1){
                         out<<"После постановки сюда "<<avalible[i]<<" я получаю две не закрытые тройки\n";
                         return avalible[i];}
-                    if(pi.me_thris_unclosed_dual==1){
+                    if(int(pi.me_thris_unclosed_dual/2)==1){
                         out<<"После постановки сюда "<<avalible[i]<<" я получаю одну не закрытую тройку\n";
                         candidats.push_back(avalible[i]);}
                 }
@@ -302,11 +302,11 @@ point alex_palyer::do_move(InfiniteFild *zeon,std::stringstream &out){
 
                     zeon->set(avalible[i].x,avalible[i].y,0);
 
-                    if((pi.cat_four_unclosed_partly>0)&&(pi.cat_thris_unclosed_dual>0))
+                    if((pi.cat_four_unclosed_partly>0)&&(int(pi.cat_thris_unclosed_dual/2)>0))
                         return avalible[i];
-                    if(pi.cat_thris_unclosed_dual>1)
+                    if(int(pi.cat_thris_unclosed_dual/2)>1)
                         return avalible[i];
-                    if(pi.cat_thris_unclosed_dual==1)
+                    if(int(pi.cat_thris_unclosed_dual/2)==1)
                         candidats2.push_back(avalible[i]);
                 }
                 if(candidats.size()!=0)
@@ -316,8 +316,8 @@ point alex_palyer::do_move(InfiniteFild *zeon,std::stringstream &out){
                 }
                 if(candidats2.size()!=0)
                 {
-                    int n=rand()%candidats.size();
-                    return candidats[n];
+                    int n=rand()%candidats2.size();
+                    return candidats2[n];
                 }
 
             }

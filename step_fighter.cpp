@@ -42,7 +42,7 @@ void Step_fighter::on_pushButton_2_clicked()
         if(st==1)
         {
             ma->do_step_1();
-            ui->textBrowser->setText(QString::fromStdString(ma->Xstr.str()));
+            ui->textBrowser->setText(QString::fromUtf8(ma->Xstr.str().c_str()));
             ma->Xstr.flush();
             if(ma->win()){
                 QMessageBox *t=new QMessageBox();
@@ -55,7 +55,7 @@ void Step_fighter::on_pushButton_2_clicked()
         else
         {
             ma->do_step_2();
-            ui->textBrowser_2->setText(QString::fromStdString(ma->Ostr.str()));
+            ui->textBrowser_2->setText(QString::fromUtf8(ma->Ostr.str().c_str()));
             ma->Ostr.flush();
             if(ma->win()){
 
