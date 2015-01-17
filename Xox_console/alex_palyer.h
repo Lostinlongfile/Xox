@@ -30,12 +30,12 @@ public:
     void count(point p,int a, int b,short type,InfiniteFild *zeon,point with);
     point_info operator+(const point_info& pi);
 };
-
+std::ostream& operator <<(std::ostream & out,const point_info &pi);
 class line
 {
 public:
-    short contain[11];
-    point inc[11];
+    short contain[12];
+    point inc[12];
     int fill;
     void push_back(short m,point p){
         contain[fill]=m;
@@ -45,7 +45,7 @@ public:
 
     line():fill(0)
     {
-        for(int i=0;i<11;i++)
+        for(int i=0;i<12;i++)
             contain[i]=0;
     }
 
@@ -53,7 +53,7 @@ public:
     full_analize analize_for(int type)
     {
         full_analize out;
-        contain[5]=type;
+       // contain[5]=type;
         int m=0;
         for(m=1;m<=5;m++)
             if(contain[5-m]!=type)
@@ -75,6 +75,9 @@ public:
 
         for(int i=0;i<11;i++)
             std::cout<<contain[i]<<" ";
+        std::cout<<std::endl;
+        for(int i=0;i<11;i++)
+            std::cout<<inc[i]<<" ";
         std::cout<<std::endl;
     }
     bool iscontain(point p)

@@ -19,6 +19,19 @@ point_info::point_info(InfiniteFild *fild,point p,short type):wins_me(0),cat_win
     count(p,1,0,type,fild);
     count(p,1,1,type,fild);
 }
+
+std::ostream& operator <<(std::ostream & out,const point_info &pi)
+{
+#define place(a) #a<<" "<<pi.a<<"\n"
+    out<< place(cat_four_unclosed_dual)<<
+          place(cat_four_unclosed_partly)<<
+          place(cat_thris_unclosed_dual)<<
+          place(me_four_unclosed_dual)<<
+          place(me_four_unclosed_partly)<<
+          place(me_thris_unclosed_dual);
+#undef place
+}
+
 point_info::point_info(InfiniteFild *fild,point p,short type,point with):wins_me(0),cat_win(0),
     cat_four_unclosed_dual(0),cat_four_unclosed_partly(0),cat_thris_unclosed_dual(0),
     me_four_unclosed_dual(0),me_four_unclosed_partly(0),me_thris_unclosed_dual(0)
@@ -44,11 +57,13 @@ void point_info::count(point p,int a, int b,short type,InfiniteFild *zeon)
 
     if(fa.after+fa.before==3)
     {
-        if((!fa.closed_after)&&(!fa.closed_before))/*незакрытая четыёрка*/
+        if((!fa.closed_after)&&(!fa.closed_before)){/*незакрытая четыёрка*/
             cat_four_unclosed_dual++;
-
+        }
+        else{
         if(!fa.closed_after||!fa.closed_before)/*полузакрытая четвёрка*/
             cat_four_unclosed_partly++;
+        }
     }
     if(fa.after+fa.before==2)
     {
@@ -60,7 +75,7 @@ void point_info::count(point p,int a, int b,short type,InfiniteFild *zeon)
     {
         if((!fa_me.closed_after)&&(!fa_me.closed_before))/*незакрытая четыёрка*/
             me_four_unclosed_dual++;
-
+        else
         if(!fa_me.closed_after||!fa_me.closed_before)/*полузакрытая четвёрка*/
             me_four_unclosed_partly++;
     }
@@ -79,19 +94,27 @@ void point_info::count(point p,int a, int b,short type,InfiniteFild *zeon,point 
         return;
     full_analize fa=l.analize_for(3-type);
     full_analize fa_me=l.analize_for(type);
-  /*  if(fa_me.after+fa_me.before==4)
+    /*if(with==point(1,-2))
+    {
+        cout<<"\ncount (1;-2;~"<<type<<")"<<p<<"+("<<a<<";"<<b<<") : a"<<fa_me.after<<" b"<<fa_me.before<<"\n";
+        l.show();
+    }*/
+    if(fa_me.after+fa_me.before==5)
         wins_me++;
 
-    if(fa.after+fa.before==4)
+
+    if(fa.after+fa.before==5)
         cat_win++;
-*/
+
     if(fa.after+fa.before==4)
     {
-        if((!fa.closed_after)&&(!fa.closed_before))/*незакрытая четыёрка*/
+        if((!fa.closed_after)&&(!fa.closed_before)){/*незакрытая четыёрка*/
             cat_four_unclosed_dual++;
-
+            //cout<<"ud enymy: "<<p<<" "<<a<<" "<<b;
+        }
+        else{
         if(!fa.closed_after||!fa.closed_before)/*полузакрытая четвёрка*/
-            cat_four_unclosed_partly++;
+            cat_four_unclosed_partly++;}
     }
     if(fa.after+fa.before==3)
     {
@@ -102,10 +125,15 @@ void point_info::count(point p,int a, int b,short type,InfiniteFild *zeon,point 
     if(fa_me.after+fa_me.before==4)
     {
         if((!fa_me.closed_after)&&(!fa_me.closed_before))/*незакрытая четыёрка*/
+        {
+            cout<<"ud me: "<<p<<" "<<a<<" "<<b;
+            l.show();
             me_four_unclosed_dual++;
-
+        }
+        else{
         if(!fa_me.closed_after||!fa_me.closed_before)/*полузакрытая четвёрка*/
             me_four_unclosed_partly++;
+        }
     }
     if(fa_me.after+fa_me.before==3)
     {
@@ -155,20 +183,22 @@ line  alex_palyer::get_masive(InfiniteFild *zeon,int x,int y,int dx,int dy)
 #define who_max(a,b) ((a)>(b)?(a):(b))
 #define who_min(a,b) ((a)<(b)?(a):(b))
     line out;
-    int mix=x-5*dx;//-1-5*(1)=-6
-    int miy=y-5*dy;//1-5*(-1)=4
-    int max=x+5*dx;//1+5*1=6
-    int may=y+5*dy;//-1+5*(-1)=-6
+    out.fill=0;
+    int mix=x-5*dx;//-3-5*(1)=-8
+    int miy=y-5*dy;//3-5*(-1)=8
+    int max=x+5*dx;//-3+5*(1)=2
+    int may=y+5*dy;//3+5*(-1)=-2
     //cout<<"getting "<<mix<<" "<<miy<<" "<<max<<" "<<may<<"\n";
     int i=miy,j=mix;
     while((i!=may)||(j!=max)){
             //cout<<i<<" "<<j<<" "<<zeon->get(j,i)<<endl;
-        out.push_back(zeon->get(j,i),point(i,j));
+        out.push_back(zeon->get(j,i),point(j,i));
             if(i!=may)
                 (may)>(miy)? i++:i--;
             if(j!=max)
                 (max)>(mix)? j++:j--;
     }
+    out.push_back(zeon->get(j,i),point(j,i));
     return out;
 }
 point_info alex_palyer::get_size_if(InfiniteFild *zeon,short type,point with)
@@ -278,10 +308,14 @@ point alex_palyer::do_move(InfiniteFild *zeon,std::stringstream &out){
                 {
 
                     zeon->set(avalible[i].x,avalible[i].y,type);
+                   // cout<<" setting "<<avalible[i]<<"\n";// point info"<<pi<<"\n";
                     point_info pi=get_size_if(zeon,type,avalible[i]);
-
                     zeon->set(avalible[i].x,avalible[i].y,0);
-
+                    if(pi.me_four_unclosed_dual>0)
+                    {
+                                                out<<"После постановки сюда "<<avalible[i]<<" я получаю  не закрытую четвёрку и этого хватаит\n";
+                                                return avalible[i];
+                    }
                     if((pi.me_four_unclosed_partly>0)&&(int(pi.me_thris_unclosed_dual/2)>0)){
                         out<<"После постановки сюда "<<avalible[i]<<" я получаю  полузакрытую четвёрку и не закрытую тройку\n";
                         return avalible[i];}
@@ -301,7 +335,11 @@ point alex_palyer::do_move(InfiniteFild *zeon,std::stringstream &out){
                     point_info pi=get_size_if(zeon,type,avalible[i]);
 
                     zeon->set(avalible[i].x,avalible[i].y,0);
-
+                    if(pi.cat_four_unclosed_dual>0)
+                    {
+                                                out<<"После постановки сюда "<<avalible[i]<<" враг получаю  не закрытую четвёрку и этого хватаит\n";
+                                                return avalible[i];
+                    }
                     if((pi.cat_four_unclosed_partly>0)&&(int(pi.cat_thris_unclosed_dual/2)>0))
                         return avalible[i];
                     if(int(pi.cat_thris_unclosed_dual/2)>1)
@@ -328,7 +366,7 @@ point alex_palyer::do_move(InfiniteFild *zeon,std::stringstream &out){
     return avalible[n];
 }
 const char * alex_palyer::get_name(){
-    return "Alex's Player v0.3.0";
+    return "Alex's Player v0.3.1";
 }
 void alex_palyer::set_type(short type){
     this->type=type;

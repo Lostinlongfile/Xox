@@ -37,7 +37,6 @@ void vidoplayer::play(const char *fn)
         int x,y;
         in>>tmp>>x>>y;
         move.push_back( point(x,y));
-        std::cout<<"---\n";
     }
     while(!in.eof());
     ma=new Matrix();
@@ -47,6 +46,7 @@ void vidoplayer::play(const char *fn)
 void vidoplayer::on_pushButton_3_clicked()
 {
     QString qs=QFileDialog::getOpenFileName(this,"Выбирите");
+    if(qs!="")
     play(qs.toAscii().operator const char *());
 }
 
@@ -99,14 +99,38 @@ void vidoplayer::on_pushButton_4_clicked()
     tmp->refresh();
     tmp->set_type(2);
     point t=tmp->do_move(fild->wnd->world->zeon,out);
-    m=m.sprintf("As X I will set (%i,%i)\n because:\n ",t.x,t.y)+QString::fromStdString(out.str());
+    m=m.sprintf("As X I will set (%i,%i)\n because:\n ",t.x,t.y)+QString::fromUtf8(out.str().c_str());
     out.str("");
     tmp->set_type(1);
     tmp->refresh();
     t=tmp->do_move(fild->wnd->world->zeon,out);
     QString m2="";
-    m=m+m2.sprintf("\nAs O I will set (%i,%i) because:\n ",t.x,t.y)+QString::fromStdString(out.str());
+    m=m+m2.sprintf("\nAs O I will set (%i,%i) because:\n ",t.x,t.y)+QString::fromUtf8(out.str().c_str());
     QMessageBox *msb=new QMessageBox(this);
     msb->setText(m);
     msb->show();
+}
+
+void vidoplayer::on_pushButton_5_clicked()
+{
+    while(true)
+    {
+        if(step==move.size()-1)
+        {
+            step=move.size()-1;
+            break;
+        }
+        else
+        {
+            ma->zeon->set(move[step].x,move[step].y,(2-(step%2)));
+            step++;
+        }
+        ui->graphicsView->updateGeometry();
+        ui->graphicsView->update();
+        QList<QRectF> list;
+        list.append(fild->wnd->boundingRect());
+        ui->graphicsView->setSceneRect(list[0]);
+        ui->graphicsView->viewport()->repaint();
+        qApp->processEvents();
+    }
 }
