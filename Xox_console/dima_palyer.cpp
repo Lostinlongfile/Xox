@@ -11,7 +11,7 @@ void dima_palyer::refresh()
 {
     //ctor
 }
-point dima_palyer::do_move(InfiniteFild *zeon){
+point dima_palyer::do_move(InfiniteFild *zeon, stringstream &out){
     vector<point> avalible;
     avalible.clear();
     for(int i=zeon->get_miy();i<=zeon->get_may();i++){

@@ -6,6 +6,14 @@
 !!!! 2 -- X
 ***********/
 using namespace std;
+
+
+
+std::ostream & operator<<(std::ostream& out,const point p)
+{
+    out<<"("<<p.x<<";"<<p.y<<") ";
+    return out;
+}
 InfiniteFild::InfiniteFild():
     min_x(-1),min_y(-1),max_x(1),max_y(1)
 {

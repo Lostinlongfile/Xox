@@ -12,7 +12,7 @@ void random_palyer::refresh()
 {
     //ctor
 }
-point random_palyer::do_move(InfiniteFild *zeon){
+point random_palyer::do_move(InfiniteFild *zeon,std::stringstream &out){
     vector<point> avalible;
     avalible.clear();
     for(int i=zeon->get_miy();i<=zeon->get_may();i++){

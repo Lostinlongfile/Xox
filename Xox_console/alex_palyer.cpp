@@ -3,6 +3,143 @@
 #include <cstdlib>
 #include <iostream>
 using namespace std;
+point_info::point_info():wins_me(0),cat_win(0),
+    cat_four_unclosed_dual(0),cat_four_unclosed_partly(0),cat_thris_unclosed_dual(0),
+    me_four_unclosed_dual(0),me_four_unclosed_partly(0),me_thris_unclosed_dual(0)
+{
+}
+
+point_info::point_info(InfiniteFild *fild,point p,short type):wins_me(0),cat_win(0),
+    cat_four_unclosed_dual(0),cat_four_unclosed_partly(0),cat_thris_unclosed_dual(0),
+    me_four_unclosed_dual(0),me_four_unclosed_partly(0),me_thris_unclosed_dual(0)
+
+{
+    count(p,0,-1,type,fild);
+    count(p,1,-1,type,fild);
+    count(p,1,0,type,fild);
+    count(p,1,1,type,fild);
+}
+point_info::point_info(InfiniteFild *fild,point p,short type,point with):wins_me(0),cat_win(0),
+    cat_four_unclosed_dual(0),cat_four_unclosed_partly(0),cat_thris_unclosed_dual(0),
+    me_four_unclosed_dual(0),me_four_unclosed_partly(0),me_thris_unclosed_dual(0)
+
+{
+    count(p,0,-1,type,fild,with);
+    count(p,1,-1,type,fild,with);
+    count(p,1,0,type,fild,with);
+    count(p,1,1,type,fild,with);
+}
+void point_info::count(point p,int a, int b,short type,InfiniteFild *zeon)
+{
+
+    line l=alex_palyer::get_masive(zeon,p.x,p.y,a,b);
+
+    full_analize fa=l.analize_for(3-type);
+    full_analize fa_me=l.analize_for(type);
+    if(fa_me.after+fa_me.before==4)
+        wins_me++;
+
+    if(fa.after+fa.before==4)
+        cat_win++;
+
+    if(fa.after+fa.before==3)
+    {
+        if((!fa.closed_after)&&(!fa.closed_before))/*незакрытая четыёрка*/
+            cat_four_unclosed_dual++;
+
+        if(!fa.closed_after||!fa.closed_before)/*полузакрытая четвёрка*/
+            cat_four_unclosed_partly++;
+    }
+    if(fa.after+fa.before==2)
+    {
+        if((!fa.closed_after)&&(!fa.closed_before))
+            cat_thris_unclosed_dual++;/*незакрытая тройка*/
+    }
+
+    if(fa_me.after+fa_me.before==3)
+    {
+        if((!fa_me.closed_after)&&(!fa_me.closed_before))/*незакрытая четыёрка*/
+            me_four_unclosed_dual++;
+
+        if(!fa_me.closed_after||!fa_me.closed_before)/*полузакрытая четвёрка*/
+            me_four_unclosed_partly++;
+    }
+    if(fa_me.after+fa_me.before==2)
+    {
+        if((!fa_me.closed_after)&&(!fa_me.closed_before))
+            me_thris_unclosed_dual++;/*незакрытая тройка*/
+    }
+
+}
+void point_info::count(point p,int a, int b,short type,InfiniteFild *zeon,point with)
+{
+
+    line l=alex_palyer::get_masive(zeon,p.x,p.y,a,b);
+    if(!l.iscontain(with))
+        return;
+    full_analize fa=l.analize_for(3-type);
+    full_analize fa_me=l.analize_for(type);
+    if(fa_me.after+fa_me.before==4)
+        wins_me++;
+
+    if(fa.after+fa.before==4)
+        cat_win++;
+
+    if(fa.after+fa.before==3)
+    {
+        if((!fa.closed_after)&&(!fa.closed_before))/*незакрытая четыёрка*/
+            cat_four_unclosed_dual++;
+
+        if(!fa.closed_after||!fa.closed_before)/*полузакрытая четвёрка*/
+            cat_four_unclosed_partly++;
+    }
+    if(fa.after+fa.before==2)
+    {
+        if((!fa.closed_after)&&(!fa.closed_before))
+            cat_thris_unclosed_dual++;/*незакрытая тройка*/
+    }
+
+    if(fa_me.after+fa_me.before==3)
+    {
+        if((!fa_me.closed_after)&&(!fa_me.closed_before))/*незакрытая четыёрка*/
+            me_four_unclosed_dual++;
+
+        if(!fa_me.closed_after||!fa_me.closed_before)/*полузакрытая четвёрка*/
+            me_four_unclosed_partly++;
+    }
+    if(fa_me.after+fa_me.before==2)
+    {
+        if((!fa_me.closed_after)&&(!fa_me.closed_before))
+            me_thris_unclosed_dual++;/*незакрытая тройка*/
+    }
+
+}
+point_info point_info::operator+(const point_info& pi)
+{
+    point_info out;
+#define add1(a) out.a = a + pi.a
+    //Sout.cat_win=cat_win+pi.cat_win;
+    /*out.wins_me =wins_me + pi.wins_me;
+                out.cat_win =cat_win + pi.cat_win;
+                out.cat_four_unclosed_dual =cat_four_unclosed_dual + pi.cat_four_unclosed_dual;
+                out.cat_four_unclosed_partly =cat_four_unclosed_partly + pi.cat_four_unclosed_partly;
+                out.cat_thris_unclosed_dual =cat_thris_unclosed_dual + pi.cat_thris_unclosed_dual;
+                out.me_four_unclosed_dual =me_four_unclosed_dual + pi.me_four_unclosed_dual;
+                out.me_four_unclosed_partly =me_four_unclosed_partly + pi.me_four_unclosed_partly;
+                out.me_thris_unclosed_dual =me_thris_unclosed_dual + pi.me_thris_unclosed_dual;*/
+            add1(wins_me);
+            add1(cat_win);
+            add1(cat_four_unclosed_dual);
+            add1(cat_four_unclosed_partly);
+            add1(cat_thris_unclosed_dual);
+            add1(me_four_unclosed_dual);
+            add1(me_four_unclosed_partly);
+            add1(me_thris_unclosed_dual);
+
+
+#undef add
+    return out;
+}
 
 alex_palyer::alex_palyer()
 {
@@ -26,7 +163,7 @@ line  alex_palyer::get_masive(InfiniteFild *zeon,int x,int y,int dx,int dy)
     int i=miy,j=mix;
     while((i!=may)||(j!=max)){
             //cout<<i<<" "<<j<<" "<<zeon->get(j,i)<<endl;
-            out.push_back(zeon->get(j,i));
+        out.push_back(zeon->get(j,i),point(i,j));
             if(i!=may)
                 (may)>(miy)? i++:i--;
             if(j!=max)
@@ -34,122 +171,23 @@ line  alex_palyer::get_masive(InfiniteFild *zeon,int x,int y,int dx,int dy)
     }
     return out;
 }
-int alex_palyer::get_size_if(InfiniteFild *zeon)
+point_info alex_palyer::get_size_if(InfiniteFild *zeon,short type,point with)
 {
-    vector<point> avalible;
-    vector<point> cat_win,thris_ud,four_hc,fucking_animals;
-    vector<point> me_win,me_thris_ud;
-
-    avalible.clear();
+    point_info out;
     for(int i=zeon->get_miy();i<=zeon->get_may();i++){
         for(int j=zeon->get_mix();j<=zeon->get_max();j++){
             if(zeon->get(j,i)==0){
                 if(zeon->isAnyNear(j,i)){
-
-                    avalible.push_back(point(j,i));
+                    out=out+point_info(zeon,point(j,i),type,with);
                 }
             }
         }
     }
-    if(avalible.size()==0){
-        return 0;
-    }
-    //std::cout<<"-------------------------\n";
-    for(int i=0;i<avalible.size();i++)
-    {
-        int four_half_closed=0;
-        int thris_unclosed_dual=0;
-        int thris_half_closed=0;
-        int me_four_half_closed=0;
-        int me_thris_unclosed_dual=0;
-        int me_thris_half_closed=0;
-#define count(a,b) {\
-            point a1=avalible[i];\
-            line l=this->get_masive(zeon,a1.x,a1.y,(a),(b));\
-    /*cout<<a1.x<<" "<<a1.y<<" ("<<(a)<<" "<<(b)<<"):";*/\
-    /*l.show();*/\
-            full_analize fa=l.analize_for(3-type);\
-            full_analize fa_me=l.analize_for(type);\
-            if(fa_me.after+fa_me.before==4){/*а я победил!*/\
-               return 0;\
-            }\
-            if(fa.after+fa.before==4){/*всё совсем плохо*/\
-                cat_win.push_back(avalible[i]);\
-                continue;\
-            }\
-            if(fa.after+fa.before==3)\
-            {\
-                if((!fa.closed_after)&&(!fa.closed_before)){/*незакрытая четыёрка*/\
-                    cat_win.push_back(avalible[i]);\
-                    continue;\
-                }\
-                if(!fa.closed_after||!fa.closed_before){/*полузакрытая четвёрка*/\
-                    four_half_closed++;\
-                    four_hc.push_back(avalible[i]);\
-                }\
-            }\
-            if(fa.after+fa.before==2)\
-            {\
-                if((!fa.closed_after)&&(!fa.closed_before)){\
-                    thris_unclosed_dual++;/*незакрытая тройка*/\
-                }else{\
-                    if(!fa.closed_after)/*полузакрытая тройка*/\
-                        thris_half_closed++;\
-                    if(!fa.closed_before)/*полузакрытая тройка*/\
-                        thris_half_closed++;\
-                }\
-            }\
-       }
-        count(0,-1);
-        count(1,-1);
-        count(1,0);
-        count(1,1);
-        //ПОсмотрим что может сделать враг
-        if(four_half_closed!=0)
-        {
-            if(four_half_closed>1){
-                cat_win.push_back(avalible[i]);
-                continue;
-            }
-            if(thris_unclosed_dual>0){
-                cat_win.push_back(avalible[i]);
-                continue;
-            }
-            /*if(thris_half_closed>=1){
-                cat_win.push_back(avalible[i]);
-                continue;
-            }*/
 
-        }
-        else{
-            if(thris_unclosed_dual>1){
-                cat_win.push_back(avalible[i]);
-                continue;
-            }
-        }
-    }
-    /*cout<<"move alize ---------\n";
-    cout<<"Cat wins\n";
-    for(int i=0;i<cat_win.size();i++)
-        cat_win[i].show();
-    cout<<endl;
-    cout<<"Me wins\n";
-    for(int i=0;i<me_win.size();i++)
-        me_win[i].show();
-    cout<<endl;
-    cout<<"Me thris ud\n";
-    for(int i=0;i<me_thris_ud.size();i++)
-        me_thris_ud[i].show();
-    cout<<endl;
-    cout<<"thris ud\n";
-    for(int i=0;i<thris_ud.size();i++)
-        thris_ud[i].show();
-    cout<<endl;*/
-    return cat_win.size();
-#undef count
+    return out;
 }
 
-point alex_palyer::do_move(InfiniteFild *zeon){
+point alex_palyer::do_move(InfiniteFild *zeon,std::stringstream &out){
     vector<point> avalible;
     vector<point> cat_win,thris_ud,four_hc,fucking_animals;
     vector<point> me_win,me_thris_ud;
@@ -171,202 +209,116 @@ point alex_palyer::do_move(InfiniteFild *zeon){
     //std::cout<<"-------------------------\n";
     for(int i=0;i<avalible.size();i++)
     {
-        int four_half_closed=0;
-        int thris_unclosed_dual=0;
-        int thris_half_closed=0;
-        int me_four_half_closed=0;
-        int me_thris_unclosed_dual=0;
-        int me_thris_half_closed=0;
-#define count(a,b) {\
-            point a1=avalible[i];\
-            line l=this->get_masive(zeon,a1.x,a1.y,(a),(b));\
-    /*cout<<a1.x<<" "<<a1.y<<" ("<<(a)<<" "<<(b)<<"):";*/\
-    /*l.show();*/\
-            full_analize fa=l.analize_for(3-type);\
-            full_analize fa_me=l.analize_for(type);\
-            if(fa_me.after+fa_me.before==4){/*а я победил!*/\
-               return avalible[i];\
-            }\
-            if(fa.after+fa.before==4){/*всё совсем плохо*/\
-                fucking_animals.push_back(avalible[i]);\
-                continue;\
-            }\
-            if(fa.after+fa.before==3)\
-            {\
-                if((!fa.closed_after)&&(!fa.closed_before)){/*незакрытая четыёрка*/\
-                    cat_win.push_back(avalible[i]);\
-                    continue;\
-                }\
-                if(!fa.closed_after||!fa.closed_before){/*полузакрытая четвёрка*/\
-                    four_half_closed++;\
-                    four_hc.push_back(avalible[i]);\
-                }\
-            }\
-            if(fa_me.after+fa_me.before==3)\
-            {\
-                if((!fa_me.closed_after)&&(!fa_me.closed_before)){/*незакрытая четыёрка*/\
-                    me_win.push_back(avalible[i]);\
-                    continue;\
-                }\
-                if(!fa_me.closed_after)/*полузакрытая четвёрка*/\
-                    me_four_half_closed++;\
-                if(!fa_me.closed_before)/*полузакрытая четвёрка*/\
-                    me_four_half_closed++;\
-            }\
-            if(fa.after+fa.before==2)\
-            {\
-                if((!fa.closed_after)&&(!fa.closed_before)){\
-                    thris_unclosed_dual++;/*незакрытая тройка*/\
-                }else{\
-                    if(!fa.closed_after)/*полузакрытая тройка*/\
-                        thris_half_closed++;\
-                    if(!fa.closed_before)/*полузакрытая тройка*/\
-                        thris_half_closed++;\
-                }\
-            }\
-            if(fa_me.after+fa_me.before==2)\
-            {\
-                if((!fa_me.closed_after)&&(!fa_me.closed_before)){\
-                    me_thris_unclosed_dual++;/*незакрытая тройка*/\
-                }else{\
-                    if(!fa_me.closed_after)/*полузакрытая тройка*/\
-                        me_thris_half_closed++;\
-                    if(!fa_me.closed_before)/*полузакрытая тройка*/\
-                        me_thris_half_closed++;\
-                }\
-            }\
-       }
-        count(0,-1);
-        count(1,-1);
-        count(1,0);
-        count(1,1);
-        //ПОсмотрим что может сделать враг
-        if(four_half_closed!=0)
-        {
-            if(four_half_closed>1){
-                cat_win.push_back(avalible[i]);
-                continue;
-            }
-            if(thris_unclosed_dual>0){
-                cat_win.push_back(avalible[i]);
-                continue;
-            }
-            /*if(thris_half_closed>=1){
-                cat_win.push_back(avalible[i]);
-                continue;
-            }*/
+#define add_to(to) {to.push_back(avalible[i]);continue;}
+        point_info pi=point_info(zeon,avalible[i],type);
+        if(pi.wins_me!=0)
+            return avalible[i];
+        if(pi.cat_win!=0)
+            add_to(fucking_animals)
+        if(pi.cat_four_unclosed_dual)
+            add_to(cat_win)
+        if((pi.cat_four_unclosed_partly>0)&&(pi.cat_thris_unclosed_dual>0))
+            add_to(cat_win)
+        if(pi.cat_thris_unclosed_dual>1)
+            add_to(cat_win)
 
-        }
-        else{
-            if(thris_unclosed_dual>1){
-                cat_win.push_back(avalible[i]);
-                continue;
-            }
-            if(thris_unclosed_dual!=0)
-                thris_ud.push_back(avalible[i]);
-        }
-        //посмотрим что могу сделать я
-        if(me_four_half_closed!=0)
-        {
-            if(me_four_half_closed>1){
-                me_win.push_back(avalible[i]);
-                continue;
-            }
-            if(me_thris_unclosed_dual>0){
-                me_win.push_back(avalible[i]);
-                continue;
-            }
-            /*if(me_thris_half_closed>=1){
-                me_win.push_back(avalible[i]);
-                continue;
-            }*/
 
-        }
-        else{
-            if(me_thris_unclosed_dual>1){
-                me_win.push_back(avalible[i]);
-                continue;
-            }
-            if(me_thris_unclosed_dual!=0)
-                me_thris_ud.push_back(avalible[i]);
-        }
+        if(pi.me_four_unclosed_dual)
+            add_to(me_win)
+        if((pi.me_four_unclosed_partly>0)&&(pi.me_thris_unclosed_dual>0))
+            add_to(me_win)
+        if(pi.me_thris_unclosed_dual>1)
+            add_to(me_win)
+
     }
-    /*cout<<"move alize ---------\n";
-    cout<<"fucking animals\n";
+    out<<"move alize ---------\n";
+    out<<"fucking animals\n";
     for(int i=0;i<fucking_animals.size();i++)
-        fucking_animals[i].show();
-    cout<<endl;
-    cout<<"Cat wins\n";
+        out<<fucking_animals[i];
+    out<<endl;
+    out<<"Cat wins\n";
     for(int i=0;i<cat_win.size();i++)
-        cat_win[i].show();
-    cout<<endl;
-    cout<<"Me wins\n";
+        out<<cat_win[i];
+    out<<endl;
+    out<<"Me wins\n";
     for(int i=0;i<me_win.size();i++)
-        me_win[i].show();
+        out<<me_win[i];
     cout<<endl;
     cout<<"Me thris ud\n";
     for(int i=0;i<me_thris_ud.size();i++)
-        me_thris_ud[i].show();
-    cout<<endl;
-    cout<<"thris ud\n";
+        out<<me_thris_ud[i];
+    out<<endl;
+    out<<"thris ud\n";
     for(int i=0;i<thris_ud.size();i++)
-        thris_ud[i].show();
-    cout<<endl;*/
+        out<<thris_ud[i];
+    out<<endl;
     if(fucking_animals.size()!=0){
         return fucking_animals[0];
     }
     else{
-        if(cat_win.size()!=0)
+        if(me_win.size()!=0)
         {
-            return cat_win[0];
+            return me_win[0];
         }
         else
         {
-            if(me_win.size()!=0)
+            if(cat_win.size()!=0)
             {
-                return me_win[0];
+                return cat_win[0];
             }
             else
             {
-                if(four_hc.size()!=0)
+                vector<point> candidats;
+                for(int i=0;i<avalible.size();i++)
                 {
-                    int n=rand()%four_hc.size();
-                    return four_hc[n];
-                }
-                else{
-                    for(int i=0;i<avalible.size();i++)
-                    {
-                        zeon->set(avalible[i].x,avalible[i].y,3-type);
-                        if(get_size_if(zeon)>0){
-                            zeon->set(avalible[i].x,avalible[i].y,0);
-                            return avalible[i];
-                        }
-                        zeon->set(avalible[i].x,avalible[i].y,0);
 
-                    }
-                    if(me_thris_ud.size()!=0)//
-                    {
-                        int n=rand()%me_thris_ud.size();
-                        return me_thris_ud[n];
-                    }
-                    else
-                    {
-                        if(thris_ud.size()!=0)//
-                        {
-                            int n=rand()%thris_ud.size();
-                            return thris_ud[n];
-                        }
-                    }
+                    zeon->set(avalible[i].x,avalible[i].y,type);
+                    point_info pi=get_size_if(zeon,type,avalible[i]);
+
+                    zeon->set(avalible[i].x,avalible[i].y,0);
+
+                    if((pi.me_four_unclosed_partly>0)&&(pi.me_thris_unclosed_dual>0))
+                        return avalible[i];
+                    if(pi.me_thris_unclosed_dual>1)
+                        return avalible[i];
+                    if(pi.me_thris_unclosed_dual==1)
+                        candidats.push_back(avalible[i]);
                 }
+                if(candidats.size()!=0)
+                {
+                    int n=rand()%candidats.size();
+                    return candidats[n];
+                }
+                for(int i=0;i<avalible.size();i++)
+                {
+
+                    zeon->set(avalible[i].x,avalible[i].y,3-type);
+                    point_info pi=get_size_if(zeon,type,avalible[i]);
+
+                    zeon->set(avalible[i].x,avalible[i].y,0);
+
+                    if((pi.cat_four_unclosed_partly>0)&&(pi.cat_thris_unclosed_dual>0))
+                        return avalible[i];
+                    if(pi.cat_thris_unclosed_dual>1)
+                        return avalible[i];
+                    if(pi.cat_thris_unclosed_dual==1)
+                        candidats.push_back(avalible[i]);
+                }
+                if(candidats.size()!=0)
+                {
+                    int n=rand()%candidats.size();
+                    return candidats[n];
+                }
+
             }
         }
     }
-#undef count
+    out<<"\nNo_ideas\n";
     int n=rand()%avalible.size();
     return avalible[n];
 }
 const char * alex_palyer::get_name(){
-    return "Alex's Player v0.2.1";
+    return "Alex's Player v0.3.0";
 }
 void alex_palyer::set_type(short type){
     this->type=type;

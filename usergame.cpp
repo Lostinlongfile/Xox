@@ -16,6 +16,7 @@ UserGame::UserGame(QWidget *parent) :
     ui->comboBox->addItem(QString::fromUtf8("Нолик"));
     fild=new GraphicField(true);
     ui->graphicsView->setScene(fild);
+    ui->dockWidget_3->setVisible(false);
    // connect(ui->graphicsView,SIGNAL(),
 }
 
@@ -49,6 +50,12 @@ void UserGame::mousePressEvent(QMouseEvent *e)
     {
          QPointF mousePoint = ui->graphicsView->mapToScene( remapped );
          fild->mousePress(mousePoint);
+         ui->textBrowser_4->setText(QString::fromStdString(fild->wnd->world->Ostr.str()+fild->wnd->world->Xstr.str()));
     }
 
+}
+
+void UserGame::on_checkBox_clicked(bool checked)
+{
+    ui->dockWidget_3->setVisible(checked);
 }

@@ -42,15 +42,16 @@ void Thinking::mousePressEvent(QMouseEvent *e)
 void Thinking::on_pushButton_4_clicked()
 {
     QString m="";
+    std::stringstream st;
     base_player *tmp=candidats[ui->comboBox->currentIndex()];
     tmp->refresh();
     tmp->set_type(2);
-    point t=tmp->do_move(fild->wnd->world->zeon);
+    point t=tmp->do_move(fild->wnd->world->zeon,st);
     m=m.sprintf("As X I will set (%i,%i)\n",t.x,t.y);
    tmp->refresh();
     tmp=new alex_palyer();
     tmp->set_type(1);
-    t=tmp->do_move(fild->wnd->world->zeon);
+    t=tmp->do_move(fild->wnd->world->zeon,st);
     QString m2="";
     m=m+m2.sprintf("As O I will set (%i,%i)",t.x,t.y);
     QMessageBox *msb=new QMessageBox(this);

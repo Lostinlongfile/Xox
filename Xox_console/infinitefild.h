@@ -2,16 +2,22 @@
 #define INFINITEFILD_H
 #include <vector>
 #include <iostream>
+#include <ostream>
 class point{
 public:
-    point(int a,int b):x(a),y(b){}
+    point(int a=0,int b=0):x(a),y(b){}
     int x;
     int y;
     void show()
     {
         std::cout<<"("<<x<<";"<<y<<") ";
     }
+    bool operator==(const point& b)
+    {
+        return (x==b.x)&&(y==b.y);
+    }
 };
+std::ostream & operator<<(std::ostream& out,const point p);
 class InfiniteFild
 {
     int min_x,min_y,max_x,max_y;

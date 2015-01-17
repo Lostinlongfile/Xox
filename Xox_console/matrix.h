@@ -9,6 +9,7 @@ class Matrix
     public:
         InfiniteFild *zeon;
         std::ofstream *out;
+        std::stringstream Xstr,Ostr;
         Matrix();
         point pX,pO;
         void set_X(base_player * x){X=x;X->set_type(2);};

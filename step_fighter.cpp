@@ -23,6 +23,8 @@ Step_fighter::Step_fighter(QWidget *parent) :
     }
     ma=NULL;
 
+    ui->dockWidget_3->setVisible(false);
+    ui->dockWidget_2->setVisible(false);
     fild=new GraphicField(false);
     ui->graphicsView->setScene(fild);
 }
@@ -40,6 +42,8 @@ void Step_fighter::on_pushButton_2_clicked()
         if(st==1)
         {
             ma->do_step_1();
+            ui->textBrowser->setText(QString::fromStdString(ma->Xstr.str()));
+            ma->Xstr.flush();
             if(ma->win()){
                 QMessageBox *t=new QMessageBox();
                 t->setText(QString::fromUtf8("Игрок (X) ")+ QString(ma->get_X()->get_name())+QString::fromUtf8(" победил!!!!!!"));
@@ -51,6 +55,8 @@ void Step_fighter::on_pushButton_2_clicked()
         else
         {
             ma->do_step_2();
+            ui->textBrowser_2->setText(QString::fromStdString(ma->Ostr.str()));
+            ma->Ostr.flush();
             if(ma->win()){
 
                 QMessageBox *t=new QMessageBox();
@@ -67,6 +73,7 @@ void Step_fighter::on_pushButton_2_clicked()
         ui->graphicsView->setSceneRect(list[0]);
         ui->graphicsView->viewport()->repaint();
         qApp->processEvents();
+
     }
 }
 
@@ -96,4 +103,15 @@ void Step_fighter::on_pushButton_3_clicked()
     QFile::copy("play.txt",qs);
     fild->wnd->world->out->open("play.txt");
 
+}
+
+void Step_fighter::on_checkBox_clicked(bool checked)
+{
+    ui->dockWidget_2->setVisible(checked);
+}
+
+void Step_fighter::on_checkBox_2_clicked(bool checked)
+{
+
+    ui->dockWidget_3->setVisible(checked);
 }
