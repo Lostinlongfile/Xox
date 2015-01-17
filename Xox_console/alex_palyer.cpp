@@ -253,17 +253,22 @@ point alex_palyer::do_move(InfiniteFild *zeon,std::stringstream &out){
         out<<thris_ud[i];
     out<<endl;
     if(fucking_animals.size()!=0){
+        out<<"пятёрка у врага\n";
         return fucking_animals[0];
     }
     else{
         if(me_win.size()!=0)
         {
+            out<<"Моя победная комбинация\n";
             return me_win[0];
         }
         else
         {
+
             if(cat_win.size()!=0)
             {
+
+                out<<"Врага победная комбинация\n";
                 return cat_win[0];
             }
             else
@@ -277,18 +282,18 @@ point alex_palyer::do_move(InfiniteFild *zeon,std::stringstream &out){
 
                     zeon->set(avalible[i].x,avalible[i].y,0);
 
-                    if((pi.me_four_unclosed_partly>0)&&(pi.me_thris_unclosed_dual>0))
-                        return avalible[i];
-                    if(pi.me_thris_unclosed_dual>1)
-                        return avalible[i];
-                    if(pi.me_thris_unclosed_dual==1)
-                        candidats.push_back(avalible[i]);
+                    if((pi.me_four_unclosed_partly>0)&&(pi.me_thris_unclosed_dual>0)){
+                        out<<"После постановки сюда "<<avalible[i]<<" я получаю  полузакрытую четвёрку и не закрытую тройку\n";
+                        return avalible[i];}
+                    if(pi.me_thris_unclosed_dual>1){
+                        out<<"После постановки сюда "<<avalible[i]<<" я получаю две не закрытые тройки\n";
+                        return avalible[i];}
+                    if(pi.me_thris_unclosed_dual==1){
+                        out<<"После постановки сюда "<<avalible[i]<<" я получаю одну не закрытую тройку\n";
+                        candidats.push_back(avalible[i]);}
                 }
-                if(candidats.size()!=0)
-                {
-                    int n=rand()%candidats.size();
-                    return candidats[n];
-                }
+
+                vector<point> candidats2;
                 for(int i=0;i<avalible.size();i++)
                 {
 
@@ -302,9 +307,14 @@ point alex_palyer::do_move(InfiniteFild *zeon,std::stringstream &out){
                     if(pi.cat_thris_unclosed_dual>1)
                         return avalible[i];
                     if(pi.cat_thris_unclosed_dual==1)
-                        candidats.push_back(avalible[i]);
+                        candidats2.push_back(avalible[i]);
                 }
                 if(candidats.size()!=0)
+                {
+                    int n=rand()%candidats.size();
+                    return candidats[n];
+                }
+                if(candidats2.size()!=0)
                 {
                     int n=rand()%candidats.size();
                     return candidats[n];
@@ -313,7 +323,7 @@ point alex_palyer::do_move(InfiniteFild *zeon,std::stringstream &out){
             }
         }
     }
-    out<<"\nNo_ideas\n";
+    out<<"\nNo_ideas :(\n";
     int n=rand()%avalible.size();
     return avalible[n];
 }
