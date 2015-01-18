@@ -50,7 +50,7 @@ void UserGame::mousePressEvent(QMouseEvent *e)
     {
          QPointF mousePoint = ui->graphicsView->mapToScene( remapped );
          fild->mousePress(mousePoint);
-         ui->textBrowser_4->setText(QString::fromStdString(fild->wnd->world->Ostr.str()+fild->wnd->world->Xstr.str()));
+         ui->textBrowser_4->setText(QString::fromUtf8((fild->wnd->world->Ostr.str()+fild->wnd->world->Xstr.str()).c_str()));
     }
 
 }
