@@ -49,10 +49,10 @@ void point_info::count(point p,int a, int b,short type,InfiniteFild *zeon)
 
     full_analize fa=l.analize_for(3-type);
     full_analize fa_me=l.analize_for(type);
-    if(fa_me.after+fa_me.before==4)
+    if(fa_me.after+fa_me.before>=4)
         wins_me++;
 
-    if(fa.after+fa.before==4)
+    if(fa.after+fa.before>=4)
         cat_win++;
 
     if(fa.after+fa.before==3)
@@ -99,11 +99,11 @@ void point_info::count(point p,int a, int b,short type,InfiniteFild *zeon,point 
         cout<<"\ncount (1;-2;~"<<type<<")"<<p<<"+("<<a<<";"<<b<<") : a"<<fa_me.after<<" b"<<fa_me.before<<"\n";
         l.show();
     }*/
-    if(fa_me.after+fa_me.before==5)
+    if(fa_me.after+fa_me.before>=5)
         wins_me++;
 
 
-    if(fa.after+fa.before==5)
+    if(fa.after+fa.before>=5)
         cat_win++;
 
     if(fa.after+fa.before==4)
