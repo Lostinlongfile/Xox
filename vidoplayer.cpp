@@ -41,18 +41,23 @@ void vidoplayer::play(const char *fn)
     while(!in.eof());
     ma=new Matrix();
     fild->set_Matrix(ma);
+    ui->horizontalSlider->setMaximum(move.size()-1);
+    ui->label_3->setNum(int(move.size()-1));
 }
 
 void vidoplayer::on_pushButton_3_clicked()
 {
     QString qs=QFileDialog::getOpenFileName(this,"Выбирите");
-    if(qs!="")
-    play(qs.toAscii().operator const char *());
+    if(qs!=""){
+        play(qs.toAscii().operator const char *());
+        ui->pushButton_5->setEnabled(true);
+        ui->horizontalSlider->setEnabled(true);
+    }
 }
 
 void vidoplayer::on_pushButton_clicked()
 {
-    if(step==0)
+  /*  if(step==0)
     {
         step=0;
     }
@@ -68,12 +73,12 @@ void vidoplayer::on_pushButton_clicked()
     list.append(fild->wnd->boundingRect());
     ui->graphicsView->setSceneRect(list[0]);
     ui->graphicsView->viewport()->repaint();
-    qApp->processEvents();
+    qApp->processEvents();*/
 }
 
 void vidoplayer::on_pushButton_2_clicked()
 {
-    if(step==move.size()-1)
+   /* if(step==move.size()-1)
     {
         step=move.size()-1;
     }
@@ -89,6 +94,7 @@ void vidoplayer::on_pushButton_2_clicked()
     ui->graphicsView->setSceneRect(list[0]);
     ui->graphicsView->viewport()->repaint();
     qApp->processEvents();
+    */
 }
 
 void vidoplayer::on_pushButton_4_clicked()
@@ -132,5 +138,46 @@ void vidoplayer::on_pushButton_5_clicked()
         ui->graphicsView->setSceneRect(list[0]);
         ui->graphicsView->viewport()->repaint();
         qApp->processEvents();
+    }
+    ui->horizontalSlider->setValue(step);
+}
+
+void vidoplayer::on_horizontalSlider_sliderMoved(int position)
+{
+
+}
+
+void vidoplayer::on_horizontalSlider_valueChanged(int value)
+{
+    if(step<value)
+    {
+        while(step<value)
+        {
+            ma->zeon->set(move[step].x,move[step].y,(2-(step%2)));
+            step++;
+            ui->graphicsView->updateGeometry();
+            ui->graphicsView->update();
+            QList<QRectF> list;
+            list.append(fild->wnd->boundingRect());
+            ui->graphicsView->setSceneRect(list[0]);
+            ui->graphicsView->viewport()->repaint();
+            qApp->processEvents();
+        }
+    }
+    else
+    {
+        while(step>value)
+        {
+            ma->zeon->set(move[step].x,move[step].y,0);
+            step--;
+            ma->zeon->set(move[step].x,move[step].y,(2-(step%2)));
+            ui->graphicsView->updateGeometry();
+            ui->graphicsView->update();
+            QList<QRectF> list;
+            list.append(fild->wnd->boundingRect());
+            ui->graphicsView->setSceneRect(list[0]);
+            ui->graphicsView->viewport()->repaint();
+            qApp->processEvents();
+        }
     }
 }
