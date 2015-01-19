@@ -211,7 +211,7 @@ void InfiniteFild::clear()
             int ry=i-min_y;
             fild[ry][rx]=0;
         }
-        cout<<endl;
+        //cout<<endl;
     }
     //dtor
 }

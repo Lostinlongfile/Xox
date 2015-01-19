@@ -94,7 +94,7 @@ void point_info::count(point p,int a, int b,short type,InfiniteFild *zeon,point 
         return;
     full_analize fa=l.analize_for(3-type);
     full_analize fa_me=l.analize_for(type);
-    /*if(with==point(1,-2))
+    /*if(with==point(1,-3))
     {
         cout<<"\ncount (1;-2;~"<<type<<")"<<p<<"+("<<a<<";"<<b<<") : a"<<fa_me.after<<" b"<<fa_me.before<<"\n";
         l.show();
@@ -110,6 +110,7 @@ void point_info::count(point p,int a, int b,short type,InfiniteFild *zeon,point 
     {
         if((!fa.closed_after)&&(!fa.closed_before)){/*незакрытая четыёрка*/
             cat_four_unclosed_dual++;
+
             //cout<<"ud enymy: "<<p<<" "<<a<<" "<<b;
         }
         else{
@@ -118,8 +119,11 @@ void point_info::count(point p,int a, int b,short type,InfiniteFild *zeon,point 
     }
     if(fa.after+fa.before==3)
     {
-        if((!fa.closed_after)&&(!fa.closed_before))
+        if((!fa.closed_after)&&(!fa.closed_before)){
             cat_thris_unclosed_dual++;/*незакрытая тройка*/
+            if((fa.after!=0)&&(fa.before!=0))
+                cat_thris_unclosed_dual++;
+        }
     }
 
     if(fa_me.after+fa_me.before==4)
@@ -137,8 +141,11 @@ void point_info::count(point p,int a, int b,short type,InfiniteFild *zeon,point 
     }
     if(fa_me.after+fa_me.before==3)
     {
-        if((!fa_me.closed_after)&&(!fa_me.closed_before))
+        if((!fa_me.closed_after)&&(!fa_me.closed_before)){
             me_thris_unclosed_dual++;/*незакрытая тройка*/
+            if((fa_me.after!=0)&&(fa_me.before!=0))
+                me_thris_unclosed_dual++;
+        }
     }
 
 }
@@ -323,7 +330,7 @@ point alex_palyer::do_move(InfiniteFild *zeon,std::stringstream &out){
                         out<<"После постановки сюда "<<avalible[i]<<" я получаю две не закрытые тройки\n";
                         return avalible[i];}
                     if(int(pi.me_thris_unclosed_dual/2)==1){
-                        out<<"После постановки сюда "<<avalible[i]<<" я получаю одну не закрытую тройку\n";
+                        //out<<"После постановки сюда "<<avalible[i]<<" я получаю одну не закрытую тройку\n";
                         candidats.push_back(avalible[i]);}
                 }
 
@@ -340,22 +347,32 @@ point alex_palyer::do_move(InfiniteFild *zeon,std::stringstream &out){
                                                 out<<"После постановки сюда "<<avalible[i]<<" враг получаю  не закрытую четвёрку и этого хватаит\n";
                                                 return avalible[i];
                     }
-                    if((pi.cat_four_unclosed_partly>0)&&(int(pi.cat_thris_unclosed_dual/2)>0))
-                        return avalible[i];
-                    if(int(pi.cat_thris_unclosed_dual/2)>1)
-                        return avalible[i];
-                    if(int(pi.cat_thris_unclosed_dual/2)==1)
-                        candidats2.push_back(avalible[i]);
+                    if((pi.cat_four_unclosed_partly>0)&&(int(pi.cat_thris_unclosed_dual/2)>0)){
+                        out<<"После постановки сюда "<<avalible[i]<<" враг получает  полузакрытую четвёрку и не закрытую тройку\n";
+
+                        return avalible[i];}
+                    if(int(pi.cat_thris_unclosed_dual/2)>1){
+                        out<<"После постановки сюда "<<avalible[i]<<" враг получает две не закрытые тройки\n";
+
+                        return avalible[i];}
+                    if(int(pi.cat_thris_unclosed_dual/2)==1){
+
+                        candidats2.push_back(avalible[i]);}
                 }
                 if(type==1){
                     if(candidats2.size()!=0)
                     {
+
                         int n=rand()%candidats2.size();
+                        out<<"Блокируем незакрытую тройку "<<candidats2[n]<<" врага";
+
                         return candidats2[n];
                     }
                     if(candidats.size()!=0)
                     {
                         int n=rand()%candidats.size();
+                        out<<"делаем незакрытую тройку "<<candidats[n]<<" свою";
+
                         return candidats[n];
                     }
                 }else
@@ -364,11 +381,15 @@ point alex_palyer::do_move(InfiniteFild *zeon,std::stringstream &out){
                     if(candidats.size()!=0)
                     {
                         int n=rand()%candidats.size();
+                        out<<"делаем незакрытую тройку "<<candidats[n]<<" свою";
+
                         return candidats[n];
                     }
                     if(candidats2.size()!=0)
                     {
                         int n=rand()%candidats2.size();
+                        out<<"Блокируем незакрытую тройку "<<candidats2[n]<<" врага";
+
                         return candidats2[n];
                     }
                 }
@@ -381,7 +402,7 @@ point alex_palyer::do_move(InfiniteFild *zeon,std::stringstream &out){
     return avalible[n];
 }
 const char * alex_palyer::get_name(){
-    return "Alex's Player v0.3.2";
+    return "Alex's Player v0.3.3";
 }
 void alex_palyer::set_type(short type){
     this->type=type;

@@ -32,9 +32,23 @@ public:
                     QWidget *widget)
      {
          {
-             painter->setPen(QPen(Qt::red));
+            painter->setPen(QPen(Qt::red));
             int x=0;
             int y=0;
+            painter->drawRect(x*size+3,y*size+3,size-6, size-6);
+            painter->setPen(QPen(Qt::black));
+         }
+         {
+             painter->setPen(QPen(QBrush(Qt::green),3));
+            int x=world->pO.x;
+            int y=world->pO.y;
+            painter->drawRect(x*size+3,y*size+3,size-6, size-6);
+            painter->setPen(QPen(Qt::black));
+         }
+         {
+            painter->setPen(QPen(QBrush(Qt::green),3));
+            int x=world->pX.x;
+            int y=world->pX.y;
             painter->drawRect(x*size+3,y*size+3,size-6, size-6);
             painter->setPen(QPen(Qt::black));
          }
